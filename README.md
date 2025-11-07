@@ -2,13 +2,18 @@
 
 ## Instructions
 
-❗️Exclamation Marks ❗️indicate action items; you should remove these emoji as you complete/update the items which 
+Exclamation Marks indicate action items; you should remove these emoji as you complete/update the items which 
   they accompany. (This means that your final README should have no ❗️in it!)
 
-❗️**Author(s)**: Your name(s) here
+**Author(s)**: Pier Ciccariello and Yoseph Alemu
 
-❗️**Google Doc Link**: Your link here
+**Google Doc Link**: https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?usp=sharing
 
+Communication Plan:
+
+**How will you com**: Phone/texting
+**When will you meet in person?**: Sunday @ 5PM
+**How responsive should your partner expect you to be?**: Responsive but independent
 ---
 
 ## Milestone 1: Setup, Planning, Design
