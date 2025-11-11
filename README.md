@@ -20,7 +20,7 @@
                 avoid collision with the wall to survive`
 
 **Source Assignment(s)**: `T03 – Boustrophedon Turtle Drawing (movement, direction, and drawing logic reused)
-                             Class examples using Turtle/Pygame for motion and user input`
+                             Class examples using Turtle/Pygame for motion and user input.`
 
 **CRC Card(s)**:
   - Create a CRC card for each class that your project will implement.
