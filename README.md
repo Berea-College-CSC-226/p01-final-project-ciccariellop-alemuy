@@ -9,6 +9,8 @@ Exclamation Marks indicate action items; you should remove these emoji as you co
 
 **Google Doc Link**: https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?usp=sharing
 
+**Github Link**: https://github.com/Berea-College-CSC-226/p01-final-project-ciccariellop-alemuy
+
 Communication Plan:
 
 **How will you com**: Phone/texting
@@ -35,7 +37,7 @@ Communication Plan:
     README. You can do this by saving an image in the repository and linking to it. See the sample CRC card below - 
     and REPLACE it with your own:
   
-![Don't leave me in your README!](image/crc.png "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
+[Don't leave me in your README!](image/Our_Crc.png) "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
 
 **Branches**: This project will **require** effective use of git. 
 
