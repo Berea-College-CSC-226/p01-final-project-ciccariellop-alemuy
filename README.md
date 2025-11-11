@@ -7,7 +7,7 @@ Exclamation Marks indicate action items; you should remove these emoji as you co
 
 **Author(s)**: Pier Ciccariello and Yoseph Alemu
 
-**Google Doc Link**: https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?usp=sharing
+**Google Doc Link**: [https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?usp=sharing](https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?pli=1&tab=t.0#heading=h.qg98s23ap4mh)
 
 **Github Link**: https://github.com/Berea-College-CSC-226/p01-final-project-ciccariellop-alemuy
 
