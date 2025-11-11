@@ -5,7 +5,7 @@
 ❗️Exclamation Marks ❗️indicate action items; you should remove these emoji as you complete/update the items which 
   they accompany. (This means that your final README should have no ❗️in it!)
 
-❗️**Author(s)**: Your name(s) here
+❗️**Author(s)**: Yoseph Alemu
 
 ❗️**Google Doc Link**: Your link here
 
@@ -13,11 +13,14 @@
 
 ## Milestone 1: Setup, Planning, Design
 
-❗️**Title**: `What is the title of your project? Be creative! Replace this block of text.`
+❗️**Title**: `Interactive Snake Game`
 
-❗**Purpose**: `In a single sentence, describe WHAT your project will do. Replace this block of text.`
+❗**Purpose**: `This project recreates and expands upon earlier Turtle assignments T03 by building an interactive Snake
+                Game. The player controls a snake that moves around the screen, eats food to grow, and must 
+                avoid collisions to survive`
 
-❗️**Source Assignment(s)**: `List which original assignments you will base your project on? Replace this block of text.`
+❗️**Source Assignment(s)**: `T03 – Boustrophedon Turtle Drawing (movement, direction, and drawing logic reused)
+                             Class examples using Turtle/Pygame for motion and user input`
 
 ❗️**CRC Card(s)**:
   - Create a CRC card for each class that your project will implement.
@@ -36,7 +39,7 @@ branch) as they work. When you need to bring each others branches together, do s
 into your own, following the process we've discussed in previous assignments, then re-branching out from the merged code.  
 
 ```
-    Branch 1 starting name: _____________
+    Branch 1 starting name: alemuy
     Branch 2 starting name: _____________
 ```
 
