@@ -45,11 +45,8 @@ into your own, following the process we've discussed in previous assignments, th
 
 ### References 
 
- Throughout this project, you will likely use outside resources. Reference all ideas which are not your own, 
-and describe how you integrated the ideas or code into your program. This includes online sources, people who have 
-helped you, AI tools you've used, and any other resources that are not solely your own contribution. Update this 
-section as you go. DO NOT forget about it!
-
+T03 – Boustrophedon Turtle Drawing
+T12 - Events and GUIs
 ---
 
 ## Milestone 2: Code Setup and Issue Queue
