@@ -7,7 +7,7 @@
 
 **Author(s)**: Yoseph Alemu, Pier Ciccariello
 
-**Google Doc Link**: Your link here
+**Google Doc Link**: https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?pli=1&tab=t.0#heading=h.qg98s23ap4mh
 
 ---
 
