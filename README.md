@@ -37,8 +37,7 @@ Communication Plan:
     README. You can do this by saving an image in the repository and linking to it. See the sample CRC card below - 
     and REPLACE it with your own:
   
-[Don't leave me in your README!](image/Our_Crc.png "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
-
+![Our_Crc](image/Our_Crc.png "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
 **Branches**: This project will **require** effective use of git. 
 
 Each partner should create a branch at the beginning of the project, and stay on this branch (or branches of their 
