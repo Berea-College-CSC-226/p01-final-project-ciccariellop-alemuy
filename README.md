@@ -64,7 +64,11 @@ T12 - Events and GUIs
 What has surprised you so far? Describe your general feelings. Be honest with yourself; this section is for you, not me.
 
 ```
-    **Replace this text with your reflection
+    The project is going alright so far. I don’t feel behind, but I’m not really ahead either.
+    The planning took longer than I expected and some parts like thinking through collisions
+    worry me a bit. But breaking everything into smaller tasks has helped a lot and I feel more
+    organized than I thought I would. Overall, I’m a little nervous but mostly confident I can
+    get it done.
 ```
 
 ---
