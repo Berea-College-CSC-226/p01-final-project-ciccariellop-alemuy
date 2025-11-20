@@ -7,9 +7,9 @@ Exclamation Marks indicate action items; you should remove these emoji as you co
 
 **Author(s)**: Pier Ciccariello and Yoseph Alemu
 
-**Google Doc Link**: https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?usp=sharing
+**Google Doc Link**: [https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?usp=sharing](https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?pli=1&tab=t.0#heading=h.qg98s23ap4mh)
 
-**Github Link**: https://github.com/Berea-College-CSC-226/p01-final-project-ciccariellop-alemuy
+**Github Link**:[ https://github.com/Berea-College-CSC-226/p01-final-project-ciccariellop-alemuy](https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?pli=1&tab=t.0#heading=h.qg98s23ap4mh)
 
 Communication Plan:
 
@@ -37,7 +37,8 @@ Communication Plan:
     README. You can do this by saving an image in the repository and linking to it. See the sample CRC card below - 
     and REPLACE it with your own:
   
-![Our_Crc](image/Our_Crc.png "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
+[Don't leave me in your README!](image/Our_Crc.png) "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
+
 **Branches**: This project will **require** effective use of git. 
 
 Each partner should create a branch at the beginning of the project, and stay on this branch (or branches of their 
@@ -63,7 +64,11 @@ T12 - Events and GUIs
 What has surprised you so far? Describe your general feelings. Be honest with yourself; this section is for you, not me.
 
 ```
-    **Replace this text with your reflection
+    The project is going alright so far. I don’t feel behind, but I’m not really ahead either.
+    The planning took longer than I expected and some parts like thinking through collisions
+    worry me a bit. But breaking everything into smaller tasks has helped a lot and I feel more
+    organized than I thought I would. Overall, I’m a little nervous but mostly confident I can
+    get it done.
 ```
 
 ---
