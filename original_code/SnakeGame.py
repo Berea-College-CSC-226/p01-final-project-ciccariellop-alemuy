@@ -64,4 +64,25 @@ class AppleEffects:
 
     def spawn_new_apple(self):
         pass  # Subtask IV.C
+class ScoreUpdater:
+    def increase_score(self):
+        pass  # Subtask V.A
+
+    def add_snake_segments(self):
+        pass  # Subtask V.B
+
+    def update_score_display(self):
+        pass  # Subtask V.C
+class GameEndHandler:
+    def detect_game_over(self):
+        pass  # Subtask VI.A
+
+    def stop_game_movement(self):
+        pass  # Subtask VI.B
+
+    def display_game_over_screen(self):
+        pass  # Subtask VI.C
+
+    def reset_or_exit(self):
+        pass  # Subtask VI.D
 
