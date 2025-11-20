@@ -59,3 +59,26 @@ def test_apple_effects_methods_exist():
     ae.apply_special_effect()
     ae.remove_eaten_apple()
     ae.spawn_new_apple()
+
+
+
+
+# Subtask V – Score updating tests
+
+def test_score_updater_methods_exist():
+    su = ScoreUpdater()
+    su.increase_score()
+    su.add_snake_segments()
+    su.update_score_display()
+
+
+
+# Subtask VI – Game ending tests
+
+
+def test_game_end_handler_methods_exist():
+    geh = GameEndHandler()
+    geh.detect_game_over()
+    geh.stop_game_movement()
+    geh.display_game_over_screen()
+    geh.reset_or_exit()
