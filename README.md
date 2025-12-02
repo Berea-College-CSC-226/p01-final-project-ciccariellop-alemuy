@@ -37,7 +37,7 @@ Communication Plan:
     README. You can do this by saving an image in the repository and linking to it. See the sample CRC card below - 
     and REPLACE it with your own:
   
-[Don't leave me in your README!](image/Our_Crc.png) "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
+![Don't leave me in your README!](image/Our_Crc.png) "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
 
 **Branches**: This project will **require** effective use of git. 
 
@@ -75,7 +75,7 @@ What has surprised you so far? Describe your general feelings. Be honest with yo
 
 ## Milestone 3: Virtual Check-In
 
-❗Indicate what percentage of the project you have left to complete and how confident you feel. 
+Indicate what percentage of the project you have left to complete and how confident you feel. 
 
 ❗️**Completion Percentage**: `0 - 100%`
 
