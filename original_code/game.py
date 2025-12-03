@@ -2,29 +2,45 @@ import random
 from apple import Apple, APPLE_NORMAL, APPLE_GOLD, APPLE_SPOILED
 from snake import Snake
 
+
 CELL_SIZE = 24
 GRID_WIDTH = 20
 GRID_HEIGHT = 20
 
+BG_COLOR = (17,17,17)
+
+
 class Game:
     def __init__(self):
+        # Set Window Size
         self.width = GRID_WIDTH
         self.height = GRID_HEIGHT
-        self.snake = None
-        self.apples = []
-        self.score = 0
-        self.state = "playing"
-        self.spawn_apple()
 
+        # Set score
+        self.score = 0
+
+        # Snake creation
         start_x = self.width // 2
         start_y = self.height // 2
-        self.snake = Snake(start_x, start_y, length=3, direction="RIGHT")
+        self.snake = Snake(start_x, start_y, 3, "RIGHT")
+
+        # Apples
+        self.apples = []
+
+        # Game state
+        self.state = "playing"
+
+        # Spawn first apple
+        self.spawn_apple()
 
     def spawn_apple(self):
         """Create a new Apple at a random position with a random type"""
+        # Makes sure an apple doesnt spawn on a snake
+        occupied = self.snake.occupies()
+
+        # Sets the x and y position to a randomly generated integer, corresponding to a position on the window
         x = random.randint(0, GRID_WIDTH - 1)
         y = random.randint(0, GRID_HEIGHT - 1)
-
         r = random.random()
         if r < 0.8:
             kind = APPLE_NORMAL
@@ -33,13 +49,27 @@ class Game:
         else:
             kind = APPLE_SPOILED
 
+
         new_apple = Apple(x, y, kind)
         self.apples.append(new_apple)
 
     def handle_input(self):
         # read pygame events
         # if arrow key pressed: change snake direction
-        pass
+        for event in events:
+            if event.type == 256:  # pygame.QUIT (we avoid importing pygame here)
+                self.running = False
+            elif event.type == 768:  # pygame.KEYDOWN
+                key = event.key
+                # arrow keys and WASD
+                if key == 1073741906 or key == 119:  # UP or 'w'
+                    self.snake.set_direction("UP")
+                elif key == 1073741905 or key == 115:  # DOWN or 's'
+                    self.snake.set_direction("DOWN")
+                elif key == 1073741904 or key == 97:  # LEFT or 'a'
+                    self.snake.set_direction("LEFT")
+                elif key == 1073741903 or key == 100:  # RIGHT or 'd'
+                    self.snake.set_direction("RIGHT")
 
     def check_wall_collision(self, x, y):
         """Checks if the snake has collided with a wall"""
@@ -113,4 +143,66 @@ class Game:
             self.spawn_apple()
 
         # Moves the snake & grows only if an apple was eaten
+        self.snake.step(grow)
+
+    def tick(self):
+        """
+        One game step:
+          - figure out where snake will go
+          - check for wall, self, and apple collisions
+          - move snake, possibly growing
+        """
+        if self.state != "playing":
+            return
+
+        # compute next head position based on current direction
+        head_x, head_y = self.snake.head()
+
+        dx = 0
+        dy = 0
+        if self.snake.direction == "UP":
+            dx = 0
+            dy = -1
+        elif self.snake.direction == "DOWN":
+            dx = 0
+            dy = 1
+        elif self.snake.direction == "LEFT":
+            dx = -1
+            dy = 0
+        elif self.snake.direction == "RIGHT":
+            dx = 1
+            dy = 0
+
+        new_x = head_x + dx
+        new_y = head_y + dy
+
+        # wall collision (III.B)
+        if self.check_wall_collision(new_x, new_y):
+            self.state = "game_over"
+            return
+
+        # self-collision (III.C)
+        if self.snake.hits_self(new_x, new_y):
+            self.state = "game_over"
+            return
+
+        # apple collision (III.A)
+        eaten_apple, eaten_index = self.check_apple_collision(new_x, new_y)
+        grow = False
+        if eaten_apple is not None:
+            grow = True
+
+            # basic scoring – your partner can adjust this later (V.A, IV effects, etc.)
+            if eaten_apple.kind == APPLE_NORMAL:
+                self.score = self.score + 1
+            elif eaten_apple.kind == APPLE_GOLD:
+                self.score = self.score + 5
+            elif eaten_apple.kind == APPLE_SPOILED:
+                self.score = self.score - 1
+
+            # remove eaten apple and spawn a new one (IV.B.3, IV.C)
+            self.apples.pop(eaten_index)
+            self.spawn_apple()
+
+        # finally move the snake
         self.snake.step(grow)
