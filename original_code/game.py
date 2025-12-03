@@ -84,10 +84,17 @@ class Game:
         new_x = head_x + dx
         new_y = head_y + dy
 
+        #Wall collision
         if self.check_wall_collision(new_x, new_y):
             self.state = "game_over"
             return
 
+        #Self collision
+        if self.snake.hits_self(new_x, new_y):
+            self.state = "game_over"
+            return
+
+        #Apple collision
         apple, apple_index = self.check_apple_collision(new_x, new_y)
 
         grow = False
@@ -95,4 +102,15 @@ class Game:
             apple_type = apple.kind
             # Temporary debug to confirm it's working
             print("Apple eaten of type:", apple_type)
+
+            # Increase snake length
+            grow = True
+
+            # Remove eaten apple
+            self.apples.pop(apple_index)
+
+            # Spawn a new apple
+            self.spawn_apple()
+
+        # Moves the snake & grows only if an apple was eaten
         self.snake.step(grow)
