@@ -62,3 +62,37 @@ class Game:
                 return apple, index
             index = index + 1
         return None, None
+
+    def update_game(self):
+        """Update the game by moving the snake and checking basic collisions."""
+        if self.state != "playing":
+            return  # do nothing if game is over
+
+        head_x, head_y = self.snake.head()
+
+        dx = 0
+        dy = 0
+        if self.snake.direction == "UP":
+            dy = -1
+        elif self.snake.direction == "DOWN":
+            dy = 1
+        elif self.snake.direction == "LEFT":
+            dx = -1
+        elif self.snake.direction == "RIGHT":
+            dx = 1
+
+        new_x = head_x + dx
+        new_y = head_y + dy
+
+        if self.check_wall_collision(new_x, new_y):
+            self.state = "game_over"
+            return
+
+        apple, apple_index = self.check_apple_collision(new_x, new_y)
+
+        grow = False
+        if apple is not None:
+            apple_type = apple.kind
+            # Temporary debug to confirm it's working
+            print("Apple eaten of type:", apple_type)
+        self.snake.step(grow)
