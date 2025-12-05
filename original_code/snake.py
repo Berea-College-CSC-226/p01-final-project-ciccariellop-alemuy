@@ -65,6 +65,7 @@ class Snake:
 
     def hits_self(self, x, y):
         """ Return True if (x, y) is on the snake's body (excluding the current head)"""
+        # Subtask III.C: Self-collisions
         i = 1
         while i < len(self.body):
             if self.body[i] == (x, y):

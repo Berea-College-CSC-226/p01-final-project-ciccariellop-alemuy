@@ -133,6 +133,7 @@ class Game:
 
     def check_wall_collision(self, x, y):
         """Checks if the snake has collided with a wall"""
+        # Subtask III.B: Check snake-apple collisions
         if x < 0:
             return True
         if x >= self.width:
@@ -145,6 +146,7 @@ class Game:
 
     def check_apple_collision(self, x, y):
         """Checks if the snake has collided with an apple"""
+        # Subtask III.A: Check snake-apple collisions
         index = 0
         while index < len(self.apples):
             apple = self.apples[index]
@@ -152,3 +154,56 @@ class Game:
                 return apple, index
             index = index + 1
         return None, None
+
+    def draw(self, screen, font):
+        """Draw the snake, apples, and score."""
+        screen.fill(BG_COLOR)
+
+        # ----- Draw apples -----
+        i = 0
+        while i < len(self.apples):
+            apple = self.apples[i]
+
+            if apple.kind == APPLE_NORMAL:
+                color = (220, 60, 60)  # red
+            elif apple.kind == APPLE_GOLD:
+                color = (255, 210, 80)  # gold/yellow
+            else:
+                color = (140, 140, 140)  # gray for spoiled
+
+            rect = pg.Rect(
+                apple.x * CELL_SIZE,
+                apple.y * CELL_SIZE,
+                CELL_SIZE,
+                CELL_SIZE
+            )
+            pg.draw.rect(screen, color, rect)
+            i = i + 1
+
+        # ----- Draw snake -----
+        body = self.snake.occupies()
+        i = 0
+        while i < len(body):
+            x, y = body[i]
+            if i == 0:
+                color = (80, 220, 120)  # head – brighter
+            else:
+                color = (40, 160, 100)  # body – darker
+
+            rect = pg.Rect(
+                x * CELL_SIZE,
+                y * CELL_SIZE,
+                CELL_SIZE,
+                CELL_SIZE
+            )
+            pg.draw.rect(screen, color, rect)
+            i = i + 1
+
+        # ----- Draw score -----
+        text_surface = font.render("Score: " + str(self.score), True, (255, 255, 255))
+        screen.blit(text_surface, (5, 5))
+
+        # Optional: simple game over text
+        if self.state == "game_over":
+            over_surface = font.render("GAME OVER", True, (255, 255, 255))
+            screen.blit(over_surface, (5, 30))
