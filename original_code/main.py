@@ -21,10 +21,9 @@ def main():
         events = pg.event.get() # Subtask II.A: Handle keyboard input
 
         game.handle_input(events)
-
         game.tick()
 
-        screen.fill(BG_COLOR)  # Subtask I.A.2: Background color
+        game.draw(screen,font)
         pg.display.flip()
 
         clock.tick(10)
