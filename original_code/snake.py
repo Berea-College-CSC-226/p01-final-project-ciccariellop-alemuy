@@ -3,6 +3,7 @@ class Snake:
         """ Create a snake starting at (start_x, start_y). """
         self.direction = direction
         self.queued_direction = direction
+
         self.body = []
         i = 0
         while i < length:       # build the body to the left of the head for a horizontal start
@@ -20,7 +21,7 @@ class Snake:
         """ Prevent a 180-degree turn (e.g., RIGHT → LEFT in one move). Only update direction if the new one isn't directly opposite """
         current = self.direction
         new = self.queued_direction
-
+        # Subtask II.C: Update Snake Direction
         if current == "UP" and new == "DOWN":
             return
         if current == "DOWN" and new == "UP":
@@ -52,7 +53,9 @@ class Snake:
 
         head_x, head_y = self.head()
         new_head = (head_x + dx, head_y + dy)   # add new head to the front
+
         self.body.insert(0, new_head)    # remove tail unless we're growing
+
         if not grow:
             self.body.pop()
 
@@ -62,6 +65,7 @@ class Snake:
 
     def hits_self(self, x, y):
         """ Return True if (x, y) is on the snake's body (excluding the current head)"""
+        # Subtask III.C: Self-collisions
         i = 1
         while i < len(self.body):
             if self.body[i] == (x, y):
