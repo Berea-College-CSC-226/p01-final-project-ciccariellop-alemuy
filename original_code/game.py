@@ -4,8 +4,9 @@ from apple import Apple, APPLE_NORMAL, APPLE_GOLD, APPLE_SPOILED, APPLE_GOLD_POI
 from snake import Snake
 
 CELL_SIZE = 24
-GRID_WIDTH = 50
+GRID_WIDTH = 20
 GRID_HEIGHT = 20
+
 
 BG_COLOR = (17,17,17)
 
@@ -21,7 +22,10 @@ class Game:
 
         # Subtask IV.B.2: Base game speed
         # This will change when we eat certain apple types.
-        self.speed = 10
+        self.current_speed = 10
+        self.speed = self.current_speed # normal speed
+
+        self.slow_until = None  # time when slow effect ends
 
         # Subtask I.B.1, I.B.2, and I.B.3: Snake position, initial length, and direction
         start_x = self.width // 2
@@ -83,6 +87,11 @@ class Game:
         """
         if self.state != "playing":
             return
+        # Restore speed after spoiled apple effect ends
+        if self.slow_until is not None:
+            if pg.time.get_ticks() >= self.slow_until:
+                self.speed = self.current_speed
+                self.slow_until = None
         # compute next head position based on the SAME logic the snake uses
         # (Subtask IV.A: Identify apple type eaten on the correct tile)
         new_x, new_y = self.snake.peek_next_head()
@@ -107,10 +116,18 @@ class Game:
             if eaten_apple.kind == APPLE_NORMAL:
                 self.score = self.score + APPLE_NORMAL_POINTS
             elif eaten_apple.kind == APPLE_GOLD:
+                # Increase speed
+                self.current_speed = min(self.speed + 1, 24)
+                self.speed = self.current_speed
+                print(self.speed)
                 self.score = self.score + APPLE_GOLD_POINTS
             elif eaten_apple.kind == APPLE_SPOILED:
                 # FIX: spoiled apples subtract points
                 self.score = self.score + APPLE_SPOILED_POINTS
+            # Subtask IV.B.2: Temporary slow effect (5 seconds)
+                self.speed = 4
+                self.slow_until = pg.time.get_ticks() + 4000
+                print(self.speed)
 
             # remove eaten apple and spawn a new one (IV.B.3, IV.C)
             self.apples.pop(eaten_index)

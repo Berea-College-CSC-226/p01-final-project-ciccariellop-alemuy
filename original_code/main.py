@@ -26,7 +26,7 @@ def main():
         game.draw(screen,font)
         pg.display.flip()
 
-        clock.tick(10)
+        clock.tick(game.speed)
 
         keys = pg.key.get_pressed() # Quit on press of escape key
         if keys[pg.K_ESCAPE]:
