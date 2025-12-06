@@ -32,6 +32,37 @@ class Snake:
             return
         self.direction = new
 
+    def peek_next_head(self):
+        """
+        This is used by Game.tick() to check collisions on
+        the exact tile the snake is about to enter.
+        """
+        current = self.direction
+        new = self.queued_direction
+
+        effective = current
+        if not (
+                (current == "UP" and new == "DOWN") or
+                (current == "DOWN" and new == "UP") or
+                (current == "LEFT" and new == "RIGHT") or
+                (current == "RIGHT" and new == "LEFT")
+        ):
+            effective = new
+
+        dx = 0
+        dy = 0
+        if effective == "UP":
+            dy = -1
+        elif effective == "DOWN":
+            dy = 1
+        elif effective == "LEFT":
+            dx = -1
+        elif effective == "RIGHT":
+            dx = 1
+
+        head_x, head_y = self.head()
+        return head_x + dx, head_y + dy
+
     def step(self, grow):
         """ Move the snake one cell in the current direction """
         self._apply_direction_change()

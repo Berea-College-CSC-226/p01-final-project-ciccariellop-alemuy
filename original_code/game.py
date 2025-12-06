@@ -4,7 +4,7 @@ from apple import Apple, APPLE_NORMAL, APPLE_GOLD, APPLE_SPOILED, APPLE_GOLD_POI
 from snake import Snake
 
 CELL_SIZE = 24
-GRID_WIDTH = 20
+GRID_WIDTH = 50
 GRID_HEIGHT = 20
 
 BG_COLOR = (17,17,17)
@@ -40,7 +40,8 @@ class Game:
         while True:
             x = random.randint(0, GRID_WIDTH - 1)
             y = random.randint(0, GRID_HEIGHT - 1)
-            if (x, y) in occupied:
+            # FIX: only accept positions that are NOT on the snake
+            if (x, y) not in occupied:
                 break
 
         r = random.random()
@@ -78,27 +79,9 @@ class Game:
         """
         if self.state != "playing":
             return
-
-        # compute next head position based on current direction
-        head_x, head_y = self.snake.head()
-
-        dx = 0
-        dy = 0
-        if self.snake.direction == "UP":
-            dx = 0
-            dy = -1
-        elif self.snake.direction == "DOWN":
-            dx = 0
-            dy = 1
-        elif self.snake.direction == "LEFT":
-            dx = -1
-            dy = 0
-        elif self.snake.direction == "RIGHT":
-            dx = 1
-            dy = 0
-
-        new_x = head_x + dx
-        new_y = head_y + dy
+        # compute next head position based on the SAME logic the snake uses
+        # (Subtask IV.A: Identify apple type eaten on the correct tile)
+        new_x, new_y = self.snake.peek_next_head()
 
         # wall collision (III.B)
         if self.check_wall_collision(new_x, new_y):
@@ -122,7 +105,8 @@ class Game:
             elif eaten_apple.kind == APPLE_GOLD:
                 self.score = self.score + APPLE_GOLD_POINTS
             elif eaten_apple.kind == APPLE_SPOILED:
-                self.score = self.score - APPLE_SPOILED_POINTS
+                # FIX: spoiled apples subtract points
+                self.score = self.score + APPLE_SPOILED_POINTS
 
             # remove eaten apple and spawn a new one (IV.B.3, IV.C)
             self.apples.pop(eaten_index)
