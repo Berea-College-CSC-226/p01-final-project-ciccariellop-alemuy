@@ -10,7 +10,7 @@ def main():
     screen = pg.display.set_mode((width, height))
 
     # Subtask I.A.3: Set game title
-    pg.display.set_caption("Snake Game with Apples")
+    pg.display.set_caption("Snake++")
 
     font = pg.font.SysFont(None, 24)
     clock = pg.time.Clock()

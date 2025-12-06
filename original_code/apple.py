@@ -6,7 +6,7 @@ APPLE_SPOILED = "spoiled"
 
 APPLE_NORMAL_POINTS = 1
 APPLE_GOLD_POINTS = 2
-APPLE_SPOILED_POINTS = -1
+APPLE_SPOILED_POINTS = -3
 
 class Apple:
     def __init__(self, x, y, kind):

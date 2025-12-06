@@ -19,6 +19,10 @@ class Game:
         # Subtask I.D.1: Set score
         self.score = 0
 
+        # Subtask IV.B.2: Base game speed
+        # This will change when we eat certain apple types.
+        self.speed = 10
+
         # Subtask I.B.1, I.B.2, and I.B.3: Snake position, initial length, and direction
         start_x = self.width // 2
         start_y = self.height // 2
@@ -93,7 +97,7 @@ class Game:
             self.state = "game_over"
             return
 
-        # apple collision (III.A)
+        # apple collision (III.A + IV.A)
         eaten_apple, eaten_index = self.check_apple_collision(new_x, new_y)
         grow = False
         if eaten_apple is not None:
