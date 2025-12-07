@@ -295,7 +295,7 @@ class Game:
                 self.score = self.score + APPLE_NORMAL_POINTS
             elif eaten_apple.kind == APPLE_GOLD:
                 # Increase speed
-                self.current_speed = min(self.speed + 1, 24)
+                self.current_speed = min(self.current_speed + 1, 24)
                 self.speed = self.current_speed
                 print(self.speed)
                 self.score = self.score + APPLE_GOLD_POINTS
