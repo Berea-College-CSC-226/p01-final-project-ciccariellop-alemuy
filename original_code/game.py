@@ -27,6 +27,11 @@ class Game:
 
         self.slow_until = None  # time when slow effect ends
 
+        # Spoiled apple timing (Subtask IV.B.2 / IV.C)
+        # A spoiled apple lives 5 seconds, then reappears after 3–6 seconds.
+        self.spoiled_lifetime_ms = 5000
+        self.next_spoiled_at_ms = pg.time.get_ticks() + random.randint(3000, 6000)
+
         # Subtask I.B.1, I.B.2, and I.B.3: Snake position, initial length, and direction
         start_x = self.width // 2
         start_y = self.height // 2
@@ -48,7 +53,7 @@ class Game:
         while True:
             x = random.randint(0, GRID_WIDTH - 1)
             y = random.randint(0, GRID_HEIGHT - 1)
-            # FIX: only accept positions that are NOT on the snake
+            # only accept positions that are NOT on the snake
             if (x, y) not in occupied:
                 break
 
@@ -58,11 +63,96 @@ class Game:
         elif r < 0.90: #15%
             kind = APPLE_SPOILED
         else:
-            kind = APPLE_GOLD #10
+            kind = APPLE_GOLD #10%
 
         new_apple = Apple(x, y, kind)
         self.apples.append(new_apple)
 
+    #NEW HELPERS FOR SPOILED / NORMAL APPLES
+
+    def spawn_normal_apple(self):
+        """Spawn a guaranteed normal (red) apple at an empty position."""
+        occupied = set(self.snake.occupies())
+        for apple in self.apples:
+            occupied.add((apple.x, apple.y))
+
+        while True:
+            x = random.randint(0, GRID_WIDTH - 1)
+            y = random.randint(0, GRID_HEIGHT - 1)
+            if (x, y) not in occupied:
+                break
+
+        new_apple = Apple(x, y, APPLE_NORMAL)
+        self.apples.append(new_apple)
+
+    def spawn_spoiled_apple(self):
+        """Spawn a spoiled apple at an empty position and remember when it appeared."""
+        occupied = set(self.snake.occupies())
+        for apple in self.apples:
+            occupied.add((apple.x, apple.y))
+
+        while True:
+            x = random.randint(0, GRID_WIDTH - 1)
+            y = random.randint(0, GRID_HEIGHT - 1)
+            if (x, y) not in occupied:
+                break
+
+        spoiled = Apple(x, y, APPLE_SPOILED)
+        spoiled.spawn_time_ms = pg.time.get_ticks()
+        self.apples.append(spoiled)
+
+    def ensure_spoiled_has_normal(self):
+        """
+        Subtask IV.A / IV.C:
+        If there is a spoiled apple, make sure there is at least one normal (red) apple.
+        """
+        has_spoiled = any(a.kind == APPLE_SPOILED for a in self.apples)
+        if not has_spoiled:
+            return
+
+        has_normal = any(a.kind == APPLE_NORMAL for a in self.apples)
+        if not has_normal:
+            self.spawn_normal_apple()
+
+    def update_spoiled_apples(self):
+        """
+        Handle spoiled apple lifetime and reappearance timing.
+
+        Subtask IV.B.2 / IV.C:
+        - A spoiled apple should appear together with a red apple.
+        - It should remain on the screen for 5 seconds if not eaten.
+        - After disappearing, it should reappear again after a random delay
+          between 3 and 6 seconds.
+        """
+        now = pg.time.get_ticks()
+
+        # 1) Remove any spoiled apples that have "expired" (older than 5s)
+        i = 0
+        while i < len(self.apples):
+            apple = self.apples[i]
+            if apple.kind == APPLE_SPOILED:
+                # give it a timestamp if it doesn't have one yet
+                if not hasattr(apple, "spawn_time_ms"):
+                    apple.spawn_time_ms = now
+
+                age = now - apple.spawn_time_ms
+                if age >= self.spoiled_lifetime_ms:
+                    # This spoiled apple timed out remove it and schedule the next one
+                    self.apples.pop(i)
+                    self.next_spoiled_at_ms = now + random.randint(3000, 6000)
+                    # don't increment i because list shrank
+                    continue
+            i += 1
+
+        #If there is no spoiled apple right now, see if it's time to spawn one
+        if not any(a.kind == APPLE_SPOILED for a in self.apples):
+            if self.next_spoiled_at_ms is not None and now >= self.next_spoiled_at_ms:
+                self.spawn_spoiled_apple()
+                # Once spawned, clear the timer until it either expires or is eaten
+                self.next_spoiled_at_ms = None
+
+        #Making sure any spoiled apple on screen has a normal red apple with it
+        self.ensure_spoiled_has_normal()
     def handle_input(self, events):
         for event in events:
             if event.type == pg.QUIT:
@@ -92,6 +182,8 @@ class Game:
             if pg.time.get_ticks() >= self.slow_until:
                 self.speed = self.current_speed
                 self.slow_until = None
+        # Update spoiled apple timers and respawn logic (Subtask IV.B.2 / IV.C)
+        self.update_spoiled_apples()
         # compute next head position based on the SAME logic the snake uses
         # (Subtask IV.A: Identify apple type eaten on the correct tile)
         new_x, new_y = self.snake.peek_next_head()
@@ -122,9 +214,9 @@ class Game:
                 print(self.speed)
                 self.score = self.score + APPLE_GOLD_POINTS
             elif eaten_apple.kind == APPLE_SPOILED:
-                # FIX: spoiled apples subtract points
+                #spoiled apples subtract points
                 self.score = self.score + APPLE_SPOILED_POINTS
-            # Subtask IV.B.2: Temporary slow effect (5 seconds)
+                # Subtask IV.B.2: Temporary slow effect (4 seconds)
                 self.speed = 4
                 self.slow_until = pg.time.get_ticks() + 4000
                 print(self.speed)
@@ -138,7 +230,7 @@ class Game:
 
     def check_wall_collision(self, x, y):
         """Checks if the snake has collided with a wall"""
-        # Subtask III.B: Check snake-apple collisions
+        # Subtask III.B: Check wall collisions
         if x < 0:
             return True
         if x >= self.width:
