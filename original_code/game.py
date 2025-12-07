@@ -53,12 +53,12 @@ class Game:
                 break
 
         r = random.random()
-        if r < 0.8:
+        if r < 0.75: #75%
             kind = APPLE_NORMAL
-        elif r < 0.95:
-            kind = APPLE_GOLD
-        else:
+        elif r < 0.90: #15%
             kind = APPLE_SPOILED
+        else:
+            kind = APPLE_GOLD #10
 
         new_apple = Apple(x, y, kind)
         self.apples.append(new_apple)

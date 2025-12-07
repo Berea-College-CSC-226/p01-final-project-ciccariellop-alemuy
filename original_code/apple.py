@@ -5,7 +5,7 @@ APPLE_SPOILED = "spoiled"
 # Subtask I.D.2: Set point values
 
 APPLE_NORMAL_POINTS = 1
-APPLE_GOLD_POINTS = 2
+APPLE_GOLD_POINTS = 5
 APPLE_SPOILED_POINTS = -3
 
 class Apple:
