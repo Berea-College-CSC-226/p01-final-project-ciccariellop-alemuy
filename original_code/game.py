@@ -1,14 +1,21 @@
 import random
 import pygame as pg
-from apple import Apple, APPLE_NORMAL, APPLE_GOLD, APPLE_SPOILED, APPLE_GOLD_POINTS, APPLE_NORMAL_POINTS, APPLE_SPOILED_POINTS
+from apple import (
+    Apple,
+    APPLE_NORMAL,
+    APPLE_GOLD,
+    APPLE_SPOILED,
+    APPLE_GOLD_POINTS,
+    APPLE_NORMAL_POINTS,
+    APPLE_SPOILED_POINTS,
+)
 from snake import Snake
 
 CELL_SIZE = 24
 GRID_WIDTH = 20
 GRID_HEIGHT = 20
 
-
-BG_COLOR = (17,17,17)
+BG_COLOR = (17, 17, 17)
 
 
 class Game:
@@ -16,6 +23,11 @@ class Game:
         self.width = GRID_WIDTH
         self.height = GRID_HEIGHT
         self.running = True
+
+        #NEW: game state and player name (start screen)
+        self.state = "menu"
+        self.player_name_input = ""  # text the user is typing
+        self.player_name = ""        # confirmed name after pressing Enter
 
         # Subtask I.D.1: Set score
         self.score = 0
@@ -48,8 +60,7 @@ class Game:
 
         self.apples = []
 
-        self.state = "playing"
-
+        # Start screen will show first; apples will spawn once we start playing
         self.spawn_apple() # Spawn first apple
 
     def spawn_apple(self):
@@ -69,9 +80,9 @@ class Game:
         r = random.random()
         # NOTE: golden apples now use their own timing logic.
         # Here we only spawn normal or spoiled apples.
-        if r < 0.75: #75%
+        if r < 0.75:  # 75%
             kind = APPLE_NORMAL
-        else:         #25%
+        else:         # 25%
             kind = APPLE_SPOILED
 
         new_apple = Apple(x, y, kind)
@@ -223,38 +234,46 @@ class Game:
             return False
         return pg.time.get_ticks() < self.ghost_until
 
-    def ghost_time_remaining_seconds(self):
-        """
-        Helper for how many seconds of Ghost Mode are left.
-        Returns an integer number of seconds (0 if not active).
-        """
-        if not self.ghost_active():
-            return 0
-        remaining_ms = self.ghost_until - pg.time.get_ticks()
-        if remaining_ms <= 0:
-            return 0
-        # Round up a bit so "1s" doesn't instantly disappear
-        return remaining_ms // 1000 + 1
-
     def handle_input(self, events):
         for event in events:
             if event.type == pg.QUIT:
                 self.running = False
 
-            elif event.type == pg.KEYDOWN: #Subtask II.B: Interpret arrow keys
-                if event.key == pg.K_UP or event.key == pg.K_w:
-                    self.snake.set_direction("UP")
-                elif event.key == pg.K_DOWN or event.key == pg.K_s:
-                    self.snake.set_direction("DOWN")
-                elif event.key == pg.K_RIGHT or event.key == pg.K_d:
-                    self.snake.set_direction("RIGHT")
-                elif event.key == pg.K_LEFT or event.key == pg.K_a:
-                    self.snake.set_direction("LEFT")
+            elif event.type == pg.KEYDOWN:
+                #MENU INPUT: typing the player name
+                if self.state == "menu":
+                    if event.key == pg.K_RETURN:
+                        # Confirm name if empty, default to "Player"
+                        if self.player_name_input.strip() == "":
+                            self.player_name = "Player"
+                        else:
+                            self.player_name = self.player_name_input.strip()
+                        # Move to gameplay
+                        self.state = "playing"
+                    elif event.key == pg.K_BACKSPACE:
+                        # Remove last character
+                        self.player_name_input = self.player_name_input[:-1]
+                    else:
+                        # Append printable characters
+                        if event.unicode.isprintable() and len(self.player_name_input) < 16:
+                            self.player_name_input += event.unicode
+
+                # -------- GAMEPLAY INPUT: move snake --------
+                elif self.state == "playing":
+                    # Subtask II.B: Interpret arrow keys
+                    if event.key == pg.K_UP or event.key == pg.K_w:
+                        self.snake.set_direction("UP")
+                    elif event.key == pg.K_DOWN or event.key == pg.K_s:
+                        self.snake.set_direction("DOWN")
+                    elif event.key == pg.K_RIGHT or event.key == pg.K_d:
+                        self.snake.set_direction("RIGHT")
+                    elif event.key == pg.K_LEFT or event.key == pg.K_a:
+                        self.snake.set_direction("LEFT")
 
     def tick(self):
         """
         One game step:
-          - update spoiled/golden apple timers
+          -if playing update spoiled/golden apple timers
           - figure out where snake will go
           - check for wall, self, and apple collisions
           - move snake, possibly growing
@@ -295,11 +314,9 @@ class Game:
                 self.score = self.score + APPLE_NORMAL_POINTS
             elif eaten_apple.kind == APPLE_GOLD:
                 # Increase speed
-                self.current_speed = min(self.current_speed + 1, 24)
+                self.current_speed = min(self.speed + 1, 24)
                 self.speed = self.current_speed
-                print(self.speed)
                 self.score = self.score + APPLE_GOLD_POINTS
-                print(self.speed)
                 # Ghost mode: snake can pass through its own body
                 # for a fixed duration (5 seconds)
                 self.ghost_until = pg.time.get_ticks() + 5000
@@ -350,6 +367,18 @@ class Game:
         """Draw the snake, apples, and score."""
         screen.fill(BG_COLOR)
 
+        # ---------- MENU: start screen with name entry ----------
+        if self.state == "menu":
+            title = font.render("Welcome to Snake++", True, (255, 255, 255))
+            prompt = font.render("Enter your name:", True, (200, 200, 200))
+            name_text = font.render(self.player_name_input + "|", True, (80, 220, 120))
+            hint = font.render("Press Enter to start", True, (200, 200, 200))
+
+            screen.blit(title, (40, 40))
+            screen.blit(prompt, (40, 80))
+            screen.blit(name_text, (40, 110))
+            screen.blit(hint, (40, 150))
+            return
         # ----- Draw apples -----
         i = 0
         while i < len(self.apples):
@@ -366,52 +395,49 @@ class Game:
                 apple.x * CELL_SIZE,
                 apple.y * CELL_SIZE,
                 CELL_SIZE,
-                CELL_SIZE
+                CELL_SIZE,
             )
             pg.draw.rect(screen, color, rect)
             i = i + 1
 
         # ----- Draw snake -----
-        ghost_on = self.ghost_active()
         body = self.snake.occupies()
+        ghost = self.ghost_active()
         i = 0
         while i < len(body):
             x, y = body[i]
-
-            if ghost_on:
-                # Ghost Mode colors – more "spectral"
-                if i == 0:
-                    color = (180, 220, 255)  # ghost head – light blue
-                else:
-                    color = (120, 170, 230)  # ghost body – softer blue
+            if i == 0:
+                # head – brighter; change slightly if ghost mode
+                color = (80, 220, 120) if not ghost else (120, 220, 255)
             else:
-                # Normal colors
-                if i == 0:
-                    color = (80, 220, 120)  # head – brighter
-                else:
-                    color = (40, 160, 100)  # body – darker
+                color = (40, 160, 100) if not ghost else (80, 180, 220)
 
             rect = pg.Rect(
                 x * CELL_SIZE,
                 y * CELL_SIZE,
                 CELL_SIZE,
-                CELL_SIZE
+                CELL_SIZE,
             )
             pg.draw.rect(screen, color, rect)
             i = i + 1
 
-        # ----- Draw score -----
-        text_surface = font.render("Score: " + str(self.score), True, (255, 255, 255))
-        screen.blit(text_surface, (5, 5))
+        #Draw score and player name
+        player_text = font.render(f"Player: {self.player_name or '???'}", True, (255, 255, 255))
+        screen.blit(player_text, (5, 15))
 
-        # ----- Draw Ghost Mode timer (when it's active) -----
-        remaining = self.ghost_time_remaining_seconds()
-        if remaining > 0:
-            ghost_text = f"Ghost: {remaining}s"
-            ghost_surface = font.render(ghost_text, True, (180, 220, 255))
-            screen.blit(ghost_surface, (5, 25))
+        # Draw score on the right
+        score_text = font.render(f"Score: {self.score}", True, (255, 255, 255))
+        screen.blit(score_text, (screen.get_width() - score_text.get_width() - 5, 15))  # right-aligned
 
-        # Optional: simple game over text
+        if ghost:
+            remaining_ms = self.ghost_until - pg.time.get_ticks()
+            if remaining_ms < 0:
+                remaining_ms = 0
+            remaining_sec = remaining_ms // 1000
+            ghost_text = font.render(f"Ghost: {remaining_sec}s", True, (180, 220, 255))
+            screen.blit(ghost_text, (5, 55))
+
+        # Game over text
         if self.state == "game_over":
             over_surface = font.render("GAME OVER", True, (255, 255, 255))
-            screen.blit(over_surface, (5, 45))
+            screen.blit(over_surface, (5, 35))
