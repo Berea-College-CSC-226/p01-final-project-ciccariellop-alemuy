@@ -63,6 +63,37 @@ class Game:
         # Start screen will show first; apples will spawn once we start playing
         self.spawn_apple() # Spawn first apple
 
+    #reset game for restart
+    def start_new_game(self):
+        """
+        Reset all gameplay-related state for a fresh run.
+        Keeps the current player_name.
+        """
+        self.score = 0
+
+        # Reset speeds and timers
+        self.current_speed = 10
+        self.speed = self.current_speed
+        self.slow_until = None
+
+        self.spoiled_lifetime_ms = 5000
+        self.next_spoiled_at_ms = pg.time.get_ticks() + random.randint(3000, 6000)
+
+        self.gold_lifetime_ms = 5000
+        self.next_gold_at_ms = pg.time.get_ticks() + random.randint(3000, 6000)
+
+        self.ghost_until = None
+
+        # Reset snake and apples
+        start_x = self.width // 2
+        start_y = self.height // 2
+        self.snake = Snake(start_x, start_y, 3, "RIGHT")
+        self.apples = []
+        self.spawn_apple()
+
+        # Back to gameplay
+        self.state = "playing"
+
     def spawn_apple(self):
         """Create a new Apple at a random position with a random type"""
         # Makes sure an apple doesn't spawn on a snake
@@ -270,6 +301,22 @@ class Game:
                     elif event.key == pg.K_LEFT or event.key == pg.K_a:
                         self.snake.set_direction("LEFT")
 
+                #GAME OVER INPUT: end game menu
+                elif self.state == "game_over":
+                    # 1 = restart game
+                    if event.key == pg.K_1 or event.key == pg.K_KP1:
+                        self.start_new_game()
+
+                    # 2 = back to main menu
+                    elif event.key == pg.K_2 or event.key == pg.K_KP2:
+                        # Reset game world but go to menu; keep the typed/confirmed name
+                        self.start_new_game()
+                        self.state = "menu"
+
+                    # 3 = quit game entirely
+                    elif event.key == pg.K_3 or event.key == pg.K_KP3:
+                        self.running = False
+
     def tick(self):
         """
         One game step:
@@ -330,7 +377,6 @@ class Game:
                 # Subtask IV.B.2: Temporary slow effect (4 seconds)
                 self.speed = 4
                 self.slow_until = pg.time.get_ticks() + 4000
-                print(self.speed)
 
             # remove eaten apple and spawn a new one (IV.B.3, IV.C)
             self.apples.pop(eaten_index)
@@ -437,7 +483,14 @@ class Game:
             ghost_text = font.render(f"Ghost: {remaining_sec}s", True, (180, 220, 255))
             screen.blit(ghost_text, (5, 55))
 
-        # Game over text
+        # ---------- END GAME SCREEN ----------
         if self.state == "game_over":
-            over_surface = font.render("GAME OVER", True, (255, 255, 255))
-            screen.blit(over_surface, (5, 35))
+            over_surface = font.render("Game Over. What would you like to do?", True, (255, 255, 255))
+            opt1 = font.render("1 - Restart game", True, (200, 200, 200))
+            opt2 = font.render("2 - Main menu", True, (200, 200, 200))
+            opt3 = font.render("3 - Quit", True, (200, 200, 200))
+
+            screen.blit(over_surface, (40, 80))
+            screen.blit(opt1, (40, 110))
+            screen.blit(opt2, (40, 140))
+            screen.blit(opt3, (40, 170))
