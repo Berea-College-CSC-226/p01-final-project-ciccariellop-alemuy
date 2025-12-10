@@ -28,7 +28,7 @@ Communication Plan:
 
 **CRC Card(s)**:
 
-![Don't leave me in your README!](image/CRCcard.png) "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
+![Don't leave me in your README!](image/CRCcard.png) "Image of CRC card. ")
 
 **Branches**: This project will **require** effective use of git. 
 
