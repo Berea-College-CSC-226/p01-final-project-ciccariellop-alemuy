@@ -83,7 +83,7 @@ I’m unsure how quickly I can complete the remaining parts, but I will do my be
 In a paragraph, explain how to use your program. Assume the user is starting just after they hit the "Run" button 
 in PyCharm. 
 
-First, you click the run button on the main.py file while on the IDE, or wherever you are starting the snake game from. Once you run the file, a window will pop up. In the window, you will be prompted for your name. Type it in and then press enter to start the game. Once you are in the game, you may move the snake character with W A S D or the arrow keys. 
+```First, you click the run button on the main.py file while on the IDE, or wherever you are starting the snake game from. Once you run the file, a window will pop up. In the window, you will be prompted for your name. Type it in and then press enter to start the game. Once you are in the game, you may move the snake character with W A S D or the arrow keys. ```
 
 ### Errors and Constraints
 
@@ -102,12 +102,12 @@ Each partner should write three to four well-written paragraphs address the foll
 - How well did you work with your partner? What made it go well? What made it challenging?
 
 ```
-    Partner 1: Pier
+Partner 1: Pier
     
-    I chose the snake game to suggest to Yoseph because I played it a lot since I was younger, especially during COVID. The final project reflects the initial idea very well, with only minor deviations. 
-    I learned a lot from this process about coding, working on projects, and with different perspectives. The hardest part was definitely bringing myself to do the coding after breaking down the subtasks. After starting to code, it was much better. 
-    The momentum helped me continue. Next time, I may choose a different game with different constraints to challenge myself. Additionally, I'd schedule more time to have in-person collaboration with my partner, rather than working as much in individual segments. Working with my partner went well overall. It was challenging because of our different schedules, priorities, and Yoseph injuring his hand. 
-    Despite all of this, I feel we were able to do our respective parts to make it work. 
+I chose the snake game to suggest to Yoseph because I played it a lot since I was younger, especially during COVID. The final project reflects the initial idea very well, with only minor deviations. 
+I learned a lot from this process about coding, working on projects, and with different perspectives. The hardest part was definitely bringing myself to do the coding after breaking down the subtasks. After starting to code, it was much better. 
+The momentum helped me continue. Next time, I may choose a different game with different constraints to challenge myself. Additionally, I'd schedule more time to have in-person collaboration with my partner, rather than working as much in individual segments. Working with my partner went well overall. It was challenging because of our different schedules, priorities, and Yoseph injuring his hand. 
+Despite all of this, I feel we were able to do our respective parts to make it work. 
 ```
 
 ```
