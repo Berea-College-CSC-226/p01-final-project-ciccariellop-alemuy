@@ -319,11 +319,7 @@ class Game:
 
     def tick(self):
         """
-        One game step:
-          -if playing update spoiled/golden apple timers
-          - figure out where snake will go
-          - check for wall, self, and apple collisions
-          - move snake, possibly growing
+        One game step that updates spoiled/golden apple timers, processes game logic for the game, and updates the game state.
         """
         if self.state != "playing":
             return
