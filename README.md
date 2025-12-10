@@ -123,7 +123,16 @@ deficiencies that remain in your code. Bugs found that aren't acknowledged in th
 ```
 
 ```
-    Partner 2: **Replace this with your reflection
+Partner 2: Yoseph
+
+I chose to work on the Snake game because it allowed me to combine creativity with the core programming concepts we 
+learned in class, such as classes, event handling, and game logic. The final project stayed very close to our original 
+design, with added features like different apple types, special effects, and a start menu that made the game more interactive. 
+Through this project, I learned how to better structure a larger program, manage state in a game, and debug issues incrementally. 
+The hardest part was pacing the work and making steady progress, especially while working with one hand due to my injury. 
+If I were to do this project again, I would start testing earlier and plan visual features sooner. Working with my partner went well overall 
+clear division of subtasks helped us stay organized, even when coordination was challenging.
+
 ```
 
 ---

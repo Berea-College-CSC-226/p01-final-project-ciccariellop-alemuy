@@ -10,8 +10,9 @@ from apple import (
     APPLE_SPOILED_POINTS,
 )
 from snake import Snake
+from sprites import AppleSpriteManager
 
-CELL_SIZE = 24
+CELL_SIZE = 30
 GRID_WIDTH = 20
 GRID_HEIGHT = 20
 
@@ -59,7 +60,8 @@ class Game:
         self.snake = Snake(start_x, start_y, 3, "RIGHT")
 
         self.apples = []
-
+        # Sprite manager for apples
+        self.apple_sprites = AppleSpriteManager(CELL_SIZE)
         # Start screen will show first; apples will spawn once we start playing
         self.spawn_apple() # Spawn first apple
 
@@ -426,20 +428,30 @@ class Game:
         while i < len(self.apples):
             apple = self.apples[i]
 
-            if apple.kind == APPLE_NORMAL:
-                color = (220, 60, 60)  # red
-            elif apple.kind == APPLE_GOLD:
-                color = (255, 210, 80)  # gold/yellow
-            else:
-                color = (140, 140, 140)  # gray for spoiled
+            # Try to use a sprite image for this apple kind
+            sprite = self.apple_sprites.get_surface(apple.kind)
 
-            rect = pg.Rect(
-                apple.x * CELL_SIZE,
-                apple.y * CELL_SIZE,
-                CELL_SIZE,
-                CELL_SIZE,
-            )
-            pg.draw.rect(screen, color, rect)
+            if sprite is not None:
+                screen.blit(
+                    sprite,
+                    (apple.x * CELL_SIZE, apple.y * CELL_SIZE),
+                )
+            else:
+                # Fallback: old rectangle drawing
+                if apple.kind == APPLE_NORMAL:
+                    color = (220, 60, 60)  # red
+                elif apple.kind == APPLE_GOLD:
+                    color = (255, 210, 80)  # gold/yellow
+                else:
+                    color = (140, 140, 140)  # gray for spoiled
+
+                rect = pg.Rect(
+                    apple.x * CELL_SIZE,
+                    apple.y * CELL_SIZE,
+                    CELL_SIZE,
+                    CELL_SIZE,
+                )
+                pg.draw.rect(screen, color, rect)
             i = i + 1
 
         # ----- Draw snake -----
@@ -495,7 +507,6 @@ class Game:
             center_x = screen.get_width() // 2
             center_y = screen.get_height() // 2
             screen.blit(line1, (center_x - line1.get_width() // 2, center_y - 40))
-            print()
             # Align all options using the same X as "Main menu" (line3)
             option_x = center_x - line3.get_width() // 2
             screen.blit(line2, (option_x, center_y - 10))  # Restart
