@@ -17,6 +17,7 @@
 #   refactoring logic, documenting code, and understanding
 #   design tradeoffs. All code was reviewed, modified, and integrated
 #   by the authors.
+#  https://www.geeksforgeeks.org/python/snake-game-in-python-using-pygame-module/#
 #################################################################################
 
 import pygame as pg
