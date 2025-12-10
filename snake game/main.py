@@ -1,3 +1,24 @@
+#################################################################################
+# Author: Yoseph Alemu, Pier Ciccariello
+#
+# Assignment: P01 Final Project – Snake Game
+# Course: CSC 226
+#
+# Purpose:
+# This project implements an interactive Snake game using Pygame.
+# The game demonstrates object-oriented programming, event-driven design,
+# collision detection, game state management, and sprite-ready rendering.
+#################################################################################
+# Acknowledgements:
+# - Original concepts inspired by classic Snake games.
+# - Boustrophedon Turtle Drawing assignment (earlier coursework reference).
+# - Icons and images sourced from https://www.flaticon.com
+# - ChatGPT (OpenAI) was used as a programming assistant to help with:
+#   refactoring logic, documenting code, and understanding
+#   design tradeoffs. All code was reviewed, modified, and integrated
+#   by the authors.
+#################################################################################
+
 import pygame as pg
 from game import Game, GRID_WIDTH, GRID_HEIGHT, CELL_SIZE, BG_COLOR
 

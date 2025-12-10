@@ -511,7 +511,6 @@ class Game:
             center_x = screen.get_width() // 2
             center_y = screen.get_height() // 2
             screen.blit(line1, (center_x - line1.get_width() // 2, center_y - 40))
-            print()
             # Align all options using the same X as "Main menu" (line3)
             option_x = center_x - line3.get_width() // 2
             screen.blit(line2, (option_x, center_y - 10))  # Restart
