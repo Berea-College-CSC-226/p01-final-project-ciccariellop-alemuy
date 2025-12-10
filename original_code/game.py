@@ -485,12 +485,23 @@ class Game:
 
         # ---------- END GAME SCREEN ----------
         if self.state == "game_over":
-            over_surface = font.render("Game Over. What would you like to do?", True, (255, 255, 255))
-            opt1 = font.render("1 - Restart game", True, (200, 200, 200))
-            opt2 = font.render("2 - Main menu", True, (200, 200, 200))
-            opt3 = font.render("3 - Quit", True, (200, 200, 200))
+            overlay = pg.Surface(screen.get_size(), pg.SRCALPHA)
+            overlay.fill((0, 0, 0, 170))
+            screen.blit(overlay, (0, 0))
 
-            screen.blit(over_surface, (40, 80))
-            screen.blit(opt1, (40, 110))
-            screen.blit(opt2, (40, 140))
-            screen.blit(opt3, (40, 170))
+            line1 = font.render(
+                "Game Over. What would you like to do?", True, (255, 255, 255)
+            )
+            line2 = font.render("1 - Restart game", True, (200, 200, 200))
+            line3 = font.render("2 - Main menu", True, (200, 200, 200))
+            line4 = font.render("3 - Quit", True, (200, 200, 200))
+
+            center_x = screen.get_width() // 2
+            center_y = screen.get_height() // 2
+            screen.blit(line1, (center_x - line1.get_width() // 2, center_y - 40))
+            print()
+            # Align all options using the same X as "Main menu" (line3)
+            option_x = center_x - line3.get_width() // 2
+            screen.blit(line2, (option_x, center_y - 10))  # Restart
+            screen.blit(line3, (option_x, center_y + 20))  # Main menu
+            screen.blit(line4, (option_x, center_y + 50))  # Quit
