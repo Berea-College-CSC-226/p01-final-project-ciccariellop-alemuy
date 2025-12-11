@@ -2,24 +2,34 @@
 
 ## Instructions
 
-❗️Exclamation Marks ❗️indicate action items; you should remove these emoji as you complete/update the items which 
+Exclamation Marks indicate action items; you should remove these emoji as you complete/update the items which 
   they accompany. (This means that your final README should have no ❗️in it!)
 
-❗️**Author(s)**: Your name(s) here
+**Author(s)**: Pier Ciccariello and Yoseph Alemu
 
-❗️**Google Doc Link**: Your link here
+**Google Doc Link**: [https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?usp=sharing](https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?pli=1&tab=t.0#heading=h.qg98s23ap4mh)
 
+**Github Link**:[ https://github.com/Berea-College-CSC-226/p01-final-project-ciccariellop-alemuy](https://docs.google.com/document/d/1xbB0G9bZFdgToJuu1stKl51P61zEk0EGotOB9yKa5Ds/edit?pli=1&tab=t.0#heading=h.qg98s23ap4mh)
+
+Communication Plan:
+
+**How will you com**: Phone/texting
+**When will you meet in person?**: Sunday @ 5PM
+**How responsive should your partner expect you to be?**: Responsive but independent
 ---
 
 ## Milestone 1: Setup, Planning, Design
 
-❗️**Title**: `What is the title of your project? Be creative! Replace this block of text.`
+**Title**: `Snake++`
 
-❗**Purpose**: `In a single sentence, describe WHAT your project will do. Replace this block of text.`
+**Purpose**: `This project recreates and expands upon earlier Turtle assignments T03 by building an interactive Snake
+                Game with varieties of food elements. The player controls a snake that moves around the screen, eats food (including normal apple, spoiled apple, and golden apple) to grow, and must 
+                avoid collision with the wall to survive`
 
-❗️**Source Assignment(s)**: `List which original assignments you will base your project on? Replace this block of text.`
+**Source Assignment(s)**: `T03 – Boustrophedon Turtle Drawing (movement, direction, and drawing logic reused)
+                             Class examples using Turtle/Pygame for motion and user input.`
 
-❗️**CRC Card(s)**:
+**CRC Card(s)**:
   - Create a CRC card for each class that your project will implement.
   - See this link for a sample CRC card and a template to use for your own cards (you will have to make a copy to edit):
     [CRC Card Example](https://docs.google.com/document/d/1JE_3Qmytk_JGztRqkPXWACJwciPH61VCx3idIlBCVFY/edit?usp=sharing)
@@ -27,73 +37,78 @@
     README. You can do this by saving an image in the repository and linking to it. See the sample CRC card below - 
     and REPLACE it with your own:
   
-![Don't leave me in your README!](image/crc.png "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
+![Don't leave me in your README!](image/CRCcard.png) "Image of CRC card as an example. Upload your CRC card(s) in place of this one. ")
 
-❗️**Branches**: This project will **require** effective use of git. 
+**Branches**: This project will **require** effective use of git. 
 
-❗Each partner should create a branch at the beginning of the project, and stay on this branch (or branches of their 
+Each partner should create a branch at the beginning of the project, and stay on this branch (or branches of their 
 branch) as they work. When you need to bring each others branches together, do so by merging each other's branches 
 into your own, following the process we've discussed in previous assignments, then re-branching out from the merged code.  
 
 ```
-    Branch 1 starting name: _____________
-    Branch 2 starting name: _____________
+    Branch 1 starting name: alemuy
+    Branch 2 starting name: ciccariellop
 ```
 
 ### References 
 
-❗Throughout this project, you will likely use outside resources. Reference all ideas which are not your own, 
-and describe how you integrated the ideas or code into your program. This includes online sources, people who have 
-helped you, AI tools you've used, and any other resources that are not solely your own contribution. Update this 
-section as you go. DO NOT forget about it!
-
+T03 – Boustrophedon Turtle Drawing
+T12 - Events and GUIs
 ---
 
 ## Milestone 2: Code Setup and Issue Queue
 
-❗Most importantly, keep your issue queue up to date, and focus on your code. 🙃
+Most importantly, keep your issue queue up to date, and focus on your code. 🙃
 
-❗Reflect on what you’ve done so far. How’s it going? Are you feeling behind/ahead? What are you worried about? 
+Reflect on what you’ve done so far. How’s it going? Are you feeling behind/ahead? What are you worried about? 
 What has surprised you so far? Describe your general feelings. Be honest with yourself; this section is for you, not me.
 
 ```
-    **Replace this text with your reflection
+    The project is going alright so far. I don’t feel behind, but I’m not really ahead either.
+    The planning took longer than I expected and some parts like thinking through collisions
+    worry me a bit. But breaking everything into smaller tasks has helped a lot and I feel more
+    organized than I thought I would. Overall, I’m a little nervous but mostly confident I can
+    get it done.
 ```
 
 ---
 
 ## Milestone 3: Virtual Check-In
 
-❗Indicate what percentage of the project you have left to complete and how confident you feel. 
+Indicate what percentage of the project you have left to complete and how confident you feel. 
 
-❗️**Completion Percentage**: `0 - 100%`
+Completion Percentage: `47%`
 
-❗️**Confidence**: Describe how confident you feel about completing this project, and why. Then, describe some 
+Confidence: Describe how confident you feel about completing this project, and why. Then, describe some 
   strategies you can employ to increase the likelihood that you'll be successful in completing this project 
   before the deadline.
 
 ```
-    **Replace this with your reflection
+Right now, I’m not completely sure how confident I feel about finishing the project on time. I’ve made some progress, 
+but there is still a lot left to do, and working with one hand because of my broken finger has definitely slowed me down. 
+I’m unsure how quickly I can complete the remaining parts, but I will do my best to finish it on time.
 ```
 
 ---
 
 ## Milestone 4: Final Code, Presentation, Demo
 
-### ❗User Instructions
+### User Instructions
 
-❗In a paragraph, explain how to use your program. Assume the user is starting just after they hit the "Run" button 
+In a paragraph, explain how to use your program. Assume the user is starting just after they hit the "Run" button 
 in PyCharm. 
 
-### ❗Errors and Constraints
+First, you click the run button on the main.py file while on the IDE, or wherever you are starting the snake game from. Once you run the file, a window will pop up. In the window, you will be prompted for your name. Type it in and then press enter to start the game. Once you are in the game, you may move the snake character with W A S D or the arrow keys. 
 
-❗Every program has bugs or features that had to be scrapped for time. These bugs should be tracked in the issue queue. 
+### Errors and Constraints
+
+Every program has bugs or features that had to be scrapped for time. These bugs should be tracked in the issue queue. 
 You should already have a few items in here from the prior weeks. Create a new issue for any undocumented errors and 
 deficiencies that remain in your code. Bugs found that aren't acknowledged in the queue will be penalized.
 
-### ❗Reflection
+### Reflection
 
-❗Each partner should write three to four well-written paragraphs address the following (at a minimum):
+Each partner should write three to four well-written paragraphs address the following (at a minimum):
 - Why did you select the project that you did?
 - How closely did your final project reflect your initial design?
 - What did you learn from this process?
@@ -102,11 +117,25 @@ deficiencies that remain in your code. Bugs found that aren't acknowledged in th
 - How well did you work with your partner? What made it go well? What made it challenging?
 
 ```
-    Partner 1: **Replace this with your reflection
+    Partner 1: Pier
+    
+    I chose the snake game to suggest to Yoseph because I played it a lot since I was younger, especially during COVID. The final project reflects the initial idea very well, with only minor deviations. 
+    I learned a lot from this process about coding, working on projects, and with different perspectives. The hardest part was definitely bringing myself to do the coding after breaking down the subtasks. After starting to code, it was much better. 
+    The momentum helped me continue. Next time, I may choose a different game with different constraints to challenge myself. Additionally, I'd schedule more time to have in-person collaboration with my partner, rather than working as much in individual segments. Working with my partner went well overall. It was challenging because of our different schedules, priorities, and Yoseph injuring his hand. 
+    Despite all of this, I feel we were able to do our respective parts to make it work. 
 ```
 
 ```
-    Partner 2: **Replace this with your reflection
+Partner 2: Yoseph
+
+I chose to work on the Snake game because it allowed me to combine creativity with the core programming concepts we 
+learned in class, such as classes, event handling, and game logic. The final project stayed very close to our original 
+design, with added features like different apple types, special effects, and a start menu that made the game more interactive. 
+Through this project, I learned how to better structure a larger program, manage state in a game, and debug issues incrementally. 
+The hardest part was pacing the work and making steady progress, especially while working with one hand due to my injury. 
+If I were to do this project again, I would start testing earlier and plan visual features sooner. Working with my partner went well overall 
+clear division of subtasks helped us stay organized, even when coordination was challenging.
+
 ```
 
 ---
